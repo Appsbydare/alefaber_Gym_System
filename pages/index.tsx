@@ -15,7 +15,7 @@ const WorkoutProgramDemo = () => {
   const [splits, setSplits] = useState([]);
   const [currentSplit, setCurrentSplit] = useState(0);
   
-  // Sample data for dropdowns
+  // Sample data for dropdowns - Yes Drop downs :)
   const [categories] = useState([
     { acronym: 'UB', name: 'Upper Body' },
     { acronym: 'LB', name: 'Lower Body' },
