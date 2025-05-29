@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Plus, Save, FileSpreadsheet, Settings, User, Calendar, Target, Dumbbell, BarChart3, Brain, Apple, Moon, Sun, Play, TrendingUp, Award, HelpCircle, Info } from 'lucide-react';
+import {
+  Plus, Save, FileSpreadsheet, Settings, User, Calendar, Target, Dumbbell, BarChart3, Brain, Apple, Moon, Sun, Play, TrendingUp, Award, HelpCircle, Info
+} from 'lucide-react';
 
-const WorkoutProgramDemo = () => {
+const WorkoutProgramDemo: React.FC = () => {
   const [isAdvancedMode, setIsAdvancedMode] = useState(false);
   const [isDarkTheme, setIsDarkTheme] = useState(true);
   const [currentStep, setCurrentStep] = useState('program-info');
@@ -11,10 +13,10 @@ const WorkoutProgramDemo = () => {
     fitnessGoal: '',
     weeklyWorkouts: 3
   });
-  
-  const [splits, setSplits] = useState([]);
+
+  const [splits, setSplits] = useState<any[]>([]);
   const [currentSplit, setCurrentSplit] = useState(0);
-  
+
   // Sample data for dropdowns
   const [categories] = useState([
     { acronym: 'UB', name: 'Upper Body' },
@@ -23,12 +25,12 @@ const WorkoutProgramDemo = () => {
     { acronym: 'CD', name: 'Cardio' },
     { acronym: 'CR', name: 'Core' }
   ]);
-  
+
   const [exercises] = useState([
-    'Push-ups', 'Squats', 'Deadlifts', 'Bench Press', 'Pull-ups', 'Lunges', 
+    'Push-ups', 'Squats', 'Deadlifts', 'Bench Press', 'Pull-ups', 'Lunges',
     'Bicep Curls', 'Tricep Dips', 'Planks', 'Burpees', 'Mountain Climbers'
   ]);
-  
+
   const [techniques] = useState([
     'Standard', 'Drop Set', 'Super Set', 'Circuit', 'HIIT', 'Pyramid', 'Myo-Reps'
   ]);
@@ -58,7 +60,7 @@ const WorkoutProgramDemo = () => {
   }, [programInfo.weeklyWorkouts]);
 
   const addExercise = () => {
-    const newExercise = {
+    const newExercise: any = {
       category: '',
       exerciseName: '',
       technique: '',
@@ -67,19 +69,19 @@ const WorkoutProgramDemo = () => {
       restTime: '',
       ...(isAdvancedMode && { videoUrl: '', notes: '' })
     };
-    
+
     const updatedSplits = [...splits];
     updatedSplits[currentSplit].exercises.push(newExercise);
     setSplits(updatedSplits);
   };
 
-  const updateExercise = (exerciseIndex, field, value) => {
+  const updateExercise = (exerciseIndex: number, field: string, value: any) => {
     const updatedSplits = [...splits];
     updatedSplits[currentSplit].exercises[exerciseIndex][field] = value;
     setSplits(updatedSplits);
   };
 
-  const removeExercise = (exerciseIndex) => {
+  const removeExercise = (exerciseIndex: number) => {
     const updatedSplits = [...splits];
     updatedSplits[currentSplit].exercises.splice(exerciseIndex, 1);
     setSplits(updatedSplits);
@@ -89,21 +91,22 @@ const WorkoutProgramDemo = () => {
     alert('Demo: Program would be exported to Google Sheets with professional formatting');
   };
 
-  const applyAISuggestion = (exercise) => {
+  const applyAISuggestion = (exercise: string) => {
     alert(`Demo: AI suggests adding "${exercise}" to your current split`);
   };
 
-  const themeClasses = isDarkTheme 
+  const themeClasses = isDarkTheme
     ? 'from-slate-900/95 via-gray-900/90 to-black/95'
     : 'from-blue-50/80 via-white/60 to-blue-50/80';
-  
-  const panelClasses = isDarkTheme 
+
+  const panelClasses = isDarkTheme
     ? 'bg-white/5 backdrop-blur-xl border-white/20 text-white'
     : 'bg-white/80 backdrop-blur-xl border-gray-300/20 text-gray-800';
 
   const buttonClasses = isDarkTheme
     ? 'text-white'
     : 'text-gray-800';
+  
 
   // Navigation items for different modes
   const getNavigationItems = () => {
